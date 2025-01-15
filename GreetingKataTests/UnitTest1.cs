@@ -66,5 +66,15 @@ namespace Greeting_Kata
 
             Assert.Equal(result, "Hello, John, Janette and Lucas");
         }
+
+        [Fact]
+        public void Test_Greet_WithMixedNames_ReturnsMixedNames()
+        {
+            string name = "John,JANETTE,Lucas";
+
+            string result = _greetingKata.greet(name);
+
+            Assert.Equal(result, "Hello, John, and Lucas. HI JANETTE!");
+        }
     }
 }
