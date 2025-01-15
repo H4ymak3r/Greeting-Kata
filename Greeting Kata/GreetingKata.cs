@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,15 +12,25 @@ namespace Greeting_Kata
     {
         public string greet(string name)
         {
-            if (name == null) {
-                return "Hello, my friend.";
-            }
-            else { 
-                return $"Hello, {name}";
-            }
-            if (name == name.ToUpper())
+            string[] names = name.Split(',');
+            if (names.Length == 1)
             {
-                return $"HELLO, {name.ToUpper()}";
+                if (name == null)
+                {
+                    return "Hello, my friend.";
+                }
+                else if (name == name.ToUpper())
+                {
+                    return $"HELLO, {name.ToUpper()}";
+                }
+                else
+                {
+                    return $"Hello, {name}";
+                }
+            }
+            else
+            {
+                return $"Hello, {names[0]} and {names[1]}";
             }
         }
     }
