@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Greeting_Kata
 {
-    internal class GreetingKata
+    public class GreetingKata
     {
         public string greet(string name)
         {
