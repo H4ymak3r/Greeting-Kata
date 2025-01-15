@@ -1,4 +1,13 @@
-﻿/*
+﻿using Greeting_Kata;
+
+GreetingKata greetingKata = new GreetingKata();
+
+Console.Write("Inserisci il/i nome/i: ");
+string name = Console.ReadLine();
+greetingKata.greet(name);
+
+
+/*
 ## Requirement 5
 
 Handle an arbitrary number of names as input. When `name` represents more than two names, separate them with commas and close with an Oxford comma and "and". For example, when `name` is `["Amy", "Brian", "Charlotte"]`, then the method should return the string `"Hello, Amy, Brian, and Charlotte."`

@@ -56,5 +56,15 @@ namespace Greeting_Kata
 
             Assert.Equal("Hello, John and Janette", result);
         }
+
+        [Fact]
+        public void Test_Greet_WithMultipleNames_ReturnsAllNames()
+        {
+            string name = "John,Janette,Lucas";
+
+            string result = _greetingKata.greet(name);
+
+            Assert.Equal(result, "Hello, John, Janette and Lucas");
+        }
     }
 }

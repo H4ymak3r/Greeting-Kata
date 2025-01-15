@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,7 +31,7 @@ namespace Greeting_Kata
             }
             else
             {
-                return $"Hello, {names[0]} and {names[1]}";
+                return $"Hello, {string.Join(", ", names.Take(names.Length - 1))}, and {names.Last()}.";
             }
         }
     }
