@@ -24,3 +24,19 @@ jobs:
 
       - name: Esecuzione dei test
         run: dotnet test --no-build --configuration Release
+        continue-on-error: false
+
+      - name: Esecuzione pacchetto
+        run: dotnet pack --configuration Release /p:PackaVersion=1.0.${{github.run_number}}
+
+      - name: Esegui push
+        run: |
+          dotnet nuget add source \
+            --username H4ymak3r \
+            --password ${{secrets.TRYPACKAGE}} \
+            --store-password-in-clear-text \
+            --name github "http://nuget.pkg.github.com/H4ymak3r/index.json"
+
+          dotner nuget push "GreetingKata/bin/Release/GreetingKata.1.0.${{ github.run_number }}.nupkg" \
+            --api-key ${{secrets.TRYPACKAGE}} \
+            --source "github"

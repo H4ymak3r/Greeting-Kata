@@ -6,8 +6,6 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using System;
-using System.Linq;
 
 namespace Greeting_Kata
 {
@@ -15,54 +13,39 @@ namespace Greeting_Kata
     {
         public string greet(string name)
         {
-            string[] names = name.Split(',').Select(n => n.Trim()).ToArray();
-
-            if (names.Length == 0 || string.IsNullOrWhiteSpace(name))
+            string[] names = name.Split(',');
+            if (names.Length == 1)
             {
-                return "Hello, my friend.";
-            }
-            string normalGreeting = "";
-            string shoutedGreeting = "";
-
-            foreach (var n in names)
-            {
-                if (n == n.ToUpper())
+                if (name == null)
                 {
-
-                    if (string.IsNullOrEmpty(shoutedGreeting))
-                    {
-                        shoutedGreeting = $"AND HELLO {n}!";
-                    }
-                    else
-                    {
-                        shoutedGreeting += $" AND {n}";
-                    }
+                    return "Hello, my friend.";
+                }
+                else if (name == name.ToUpper())
+                {
+                    return $"HELLO, {name.ToUpper()}";
                 }
                 else
                 {
-                    if (string.IsNullOrEmpty(normalGreeting))
+                    return $"Hello, {name}";
+                }
+            }
+            else 
+            {
+                string mixedGreeting = "Hello, ";
+                for (int i = 0; i < names.Length - 1; i++)
+                {
+                    if (names[i] == names[i].ToUpper()) 
                     {
-                        normalGreeting = $"Hello, {n}";
+                        mixedGreeting = mixedGreeting + names[i].ToUpper();
                     }
                     else
                     {
-                        normalGreeting += $", {n}";
+                        mixedGreeting = mixedGreeting + names[i];
                     }
+                    mixedGreeting = mixedGreeting + $"and {names[i + 1]}";
                 }
+                return mixedGreeting;
             }
-
-            if (!string.IsNullOrEmpty(normalGreeting) && !string.IsNullOrEmpty(shoutedGreeting))
-            {
-
-                int lastCommaIndex = normalGreeting.LastIndexOf(',');
-                if (lastCommaIndex != -1)
-                {
-                    normalGreeting = normalGreeting.Substring(0, lastCommaIndex) + " and" + normalGreeting.Substring(lastCommaIndex + 1);
-                }
-                return $"{normalGreeting}. {shoutedGreeting}";
-            }
-
-            return normalGreeting + shoutedGreeting;
         }
     }
 }
