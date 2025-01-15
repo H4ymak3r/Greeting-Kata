@@ -27,7 +27,7 @@ jobs:
         continue-on-error: false
 
       - name: Esecuzione pacchetto
-        run: dotnet pack --configuration Release /p:PackaVersion=1.0.${{github.run_number}}
+        run: dotnet pack --configuration Release /p:PackageVersion=1.0.${{github.run_number}}
 
       - name: Esegui push
         run: |
